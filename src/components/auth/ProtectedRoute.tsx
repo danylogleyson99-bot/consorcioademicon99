@@ -19,7 +19,8 @@ export function ProtectedRoute({ children }: ProtectedRouteProps) {
   }
 
   if (!user) {
-    return <Navigate to="/auth/login" search={{ redirect: state.location.href }} />;
+    // We cast to any for Navigate because route tree generation might not be complete
+    return <Navigate to="/auth/login" search={{ redirect: state.location.href }} as={undefined as any} />;
   }
 
   return <>{children}</>;
