@@ -83,7 +83,13 @@
   --afternoon-soft: oklch(0.2 0.02 250);
 }
 
+@keyframes loading-bar {
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(300%); }
+}
+
 @layer base {
+
   * {
     border-color: var(--color-border);
   }
