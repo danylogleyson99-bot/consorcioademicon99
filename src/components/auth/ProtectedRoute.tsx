@@ -6,6 +6,10 @@ interface ProtectedRouteProps {
   children: ReactNode;
 }
 
+/**
+ * A component that protects routes and redirects to login if not authenticated.
+ * Note: TanStack Router will generate the correct types after build.
+ */
 export function ProtectedRoute({ children }: ProtectedRouteProps) {
   const { user, loading } = useAuth();
   const state = useRouterState();
@@ -19,8 +23,9 @@ export function ProtectedRoute({ children }: ProtectedRouteProps) {
   }
 
   if (!user) {
-    // We cast to any for Navigate because route tree generation might not be complete
-    return <Navigate to="/auth/login" search={{ redirect: state.location.href }} as={undefined as any} />;
+    // We use a simple Navigate without 'as' to avoid type conflicts during initial build
+    // @ts-ignore - Ignore type error until route tree is fully generated
+    return <Navigate to="/auth/login" search={{ redirect: state.location.href }} />;
   }
 
   return <>{children}</>;
