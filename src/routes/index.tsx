@@ -25,60 +25,23 @@ export const Route = createFileRoute("/")({
 });
 
 function BoaTardePage() {
-  const [time, setTime] = useState<string>("");
-
-  useEffect(() => {
-    const updateTime = () => {
-      setTime(
-        new Intl.DateTimeFormat("pt-BR", {
-          hour: "2-digit",
-          minute: "2-digit",
-          second: "2-digit",
-        }).format(new Date())
-      );
-    };
-
-    updateTime();
-    const interval = setInterval(updateTime, 1000);
-    return () => clearInterval(interval);
-  }, []);
-
   return (
-    <main className="relative flex min-h-screen items-center justify-center overflow-hidden">
-      <div
-        className="absolute inset-0 bg-cover bg-center bg-no-repeat"
-        style={{ backgroundImage: `url(${afternoonImage})` }}
-      />
-      <div className="absolute inset-0 bg-gradient-to-br from-afternoon-amber/20 via-afternoon-gold/10 to-afternoon-warm/30" />
-      <div className="absolute inset-0 bg-afternoon-cream/30 backdrop-blur-[2px]" />
-
-      <section className="relative z-10 mx-auto max-w-2xl px-6 text-center">
-        <div className="rounded-3xl bg-afternoon-cream/60 p-10 shadow-2xl shadow-afternoon-shadow/15 ring-1 ring-afternoon-soft/50 backdrop-blur-md sm:p-14">
-          <span className="inline-flex items-center gap-2 rounded-full bg-afternoon-gold/20 px-4 py-1.5 text-sm font-medium text-afternoon-amber opacity-0 animate-fade-in-up">
-            <SunIcon className="h-4 w-4" />
-            Bem-vindo à tarde
-          </span>
-
-          <h1 className="mt-6 font-serif text-6xl font-light tracking-tight text-afternoon-text opacity-0 animate-fade-in-up animate-delay-100 sm:text-7xl">
-            Boa tarde
-          </h1>
-
-          <p className="mt-4 text-lg font-light leading-relaxed text-afternoon-shadow opacity-0 animate-fade-in-up animate-delay-200">
-            Aproveite a luz do sol, respire fundo e siga em frente.
-          </p>
-
-          {time && (
-            <div className="mt-8 opacity-0 animate-fade-in-up animate-delay-300">
-              <div className="inline-block rounded-2xl bg-afternoon-soft/50 px-6 py-3 text-3xl font-light tabular-nums tracking-wide text-afternoon-text">
-                {time}
-              </div>
-              <p className="mt-2 text-sm text-afternoon-shadow/70">
-                Hora local de Brasília
-              </p>
-            </div>
-          )}
+    <main className="flex min-h-[80vh] flex-col items-center justify-center p-6 text-center">
+      <div className="max-w-md space-y-6">
+        <h1 className="text-4xl font-bold tracking-tighter text-primary sm:text-6xl uppercase italic">
+          Garimpoleads
+        </h1>
+        <p className="text-lg text-muted-foreground">
+          Fundação do projeto carregada com sucesso.
+          <br />
+          Pronto para o SCRIPT 2.
+        </p>
+        <div className="flex justify-center gap-4">
+          <div className="h-2 w-2 animate-pulse bg-primary" />
+          <div className="h-2 w-2 animate-pulse bg-primary delay-75" />
+          <div className="h-2 w-2 animate-pulse bg-primary delay-150" />
         </div>
-      </section>
+      </div>
     </main>
   );
 }
